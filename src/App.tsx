@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TodoForm from "./TodoForm";
 
 // L'interface Tache a un id et un texte en entrer
 interface  Tache {
@@ -14,10 +15,26 @@ function App(){
     { id : 2, texte : "Ma premiere to-do-list" }
   ]);
 
+//Fonction qui permet a App d'ajouter une tache
+const ajouterTache = (nouveauTexte : string) => {
+  const nouveauTache : Tache = {
+    id : Date.now(),
+    texte : nouveauTexte
+  };
+
+//Copie des anciennes tache puis ajout de la nouvelle tache a la fin
+setTaches([...taches, nouveauTache])
+};
+
+
+
 // Ce qui s'affiche à l'écran
 return(
   <div style={{padding :" 20px", fontFamily : "sans-serif"}}>
     <h1> Ma liste de Tache </h1>
+
+    //afficheleformulaire en lui passant la fonction App
+    < TodoForm onAjouter={ajouterTache} />
 
     <ul>
       {taches.map((tache)=>(
