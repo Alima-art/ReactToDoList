@@ -1,11 +1,13 @@
 import { useState } from "react";
 import TodoForm from "./TodoForm";
+import { Tache } from "./types";
+import TodoItem from "./TodoItem";
 
 // L'interface Tache a un id et un texte en entrer
-interface  Tache {
-  id : number;
-  texte : string;
-}
+// interface  Tache {
+//   id : number;
+//   texte : string;
+// }
 
 function App(){
 
@@ -25,6 +27,13 @@ const ajouterTache = (nouveauTexte : string) => {
 //Copie des anciennes tache puis ajout de la nouvelle tache a la fin
 setTaches([...taches, nouveauTache])
 };
+
+// suppression 
+const supprimerTache = (idASupprimer: number)=> {
+  // la fonction filter()permet de tout garger sauf la tache supp
+  const listeMiseAJour = taches.filter((tache)=> tache.id !== idASupprimer);
+  setTaches(listeMiseAJour);
+}
 
 
 
